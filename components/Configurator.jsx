@@ -1,6 +1,64 @@
-"use client";
 
-function Configurator() {
+function Configurator({exterior, interior, wheel, updateOptions}) {
+  const exteriorSwatch = [
+    {
+      id: 0,
+      name: "Sun Soaked",
+      src: "/swatch/sun_soaked.png",
+    },
+    {
+      id: 1,
+      name: "Sea Grass",
+      src: "/swatch/sea_grass.png",
+    },
+    {
+      id: 2,
+      name: "Black Pearl",
+      src: "/swatch/black_pearl.png",
+    },
+    {
+      id: 3,
+      name: "Red Planet",
+      src: "/swatch/red_planet.png",
+    },
+    {
+      id: 4,
+      name: "Stealth Green",
+      src: "/swatch/stealth_green.png",
+    },
+    {
+      id: 5,
+      name: "Blue Planet",
+      src: "/swatch/blue_planet.png",
+    }
+  ]
+
+
+  const interiorSwatch = [
+    {
+      id: 0,
+      name: "dark",
+      src: "/swatch/interior/dark.png",
+    },
+    {
+      id: 1,
+      name: "white",
+      src: "/swatch/interior/light.png",
+    },
+  ];
+  const wheels = [
+    {
+      id: 0,
+      name: "SlipStream Black",
+      src: "/wheels/wheel1.png",
+    },
+    {
+      id: 1,
+      name: "Vortex",
+      src: "/wheels/wheel2.png",
+    },
+  ];
+
   return (
     <div>
       {/* Headings */}
@@ -16,19 +74,15 @@ function Configurator() {
       <div className="my-3">
         <h3 className="font-bold uppercase mb-3">Exterior Color</h3>
         <div className="flex gap-2">
-          {new Array(6).fill(1).map((_, index) => (
+        {exteriorSwatch.map((exterior) => (
             <button
-              key={index}
-              onClick={() => console.log("Exterior Clicked")}
+              key={exterior.id}
+              onClick={() => updateOptions("exterior",exterior.name)}
               className={`hover:scale-105 transition-transform duration-100  ${
-                index === 0 ? "border-2 border-blue-300 rounded-full" : ""
+                exterior === exterior.name ? "border-2 border-blue-300 rounded-full" : ""
               }`}
             >
-              <img
-                src="images/black_pearl.png"
-                alt="Black Pearl"
-                className="w-12"
-              />
+              <img src={exterior.src} alt="Black Pearl" className="w-12" />
             </button>
           ))}
         </div>
@@ -38,19 +92,15 @@ function Configurator() {
       <div className="my-12">
         <h3 className="font-bold uppercase mb-3">Interior Color</h3>
         <div className="flex gap-2">
-          {new Array(2).fill(1).map((_, index) => (
+          {interiorSwatch.map((color) => (
             <button
-              key={index}
-              onClick={() => console.log("Exterior Clicked")}
+              key={color.id}
+              onClick={() => updateOptions("interior",color.name)}
               className={`hover:scale-105 transition-transform duration-100  ${
-                index === 0 ? "border-2 border-blue-300 rounded-full" : ""
+                color.name === interior ? "border-2 border-blue-300 rounded-full" : ""
               }`}
             >
-              <img
-                src="https://fisker-ocean.vercel.app/swatch/interior/dark.png"
-                alt="Black Pearl"
-                className="w-12"
-              />
+              <img src={color.src} alt="Black Pearl" className="w-12" />
             </button>
           ))}
         </div>
@@ -60,19 +110,15 @@ function Configurator() {
       <div className="my-3">
         <h3 className="font-bold uppercase mb-3">Wheel Options</h3>
         <div className="flex gap-2">
-          {new Array(3).fill(1).map((_, index) => (
+          {wheels.map((wheel) => (
             <button
-              key={index}
-              onClick={() => console.log("Exterior Clicked")}
+              key={wheel.id}
+              onClick={() => updateOptions("wheel",wheel.name)}
               className={`hover:scale-105 transition-transform duration-100  ${
-                index === 0 ? "border-2 border-blue-300" : ""
+                wheel.name === wheel ? "border-2 border-blue-300 rounded-full" : ""
               }`}
             >
-              <img
-                src="https://fisker-ocean.vercel.app/wheels/aerostealth.webp"
-                alt="Black Pearl"
-                className="w-12"
-              />
+              <img src={wheel.src} alt="Black Pearl" className="w-20" />
             </button>
           ))}
         </div>
